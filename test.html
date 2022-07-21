@@ -4,40 +4,196 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8"/>
 <style>
-@media screen and (max-width: 480px) {
-  body{
-    font-size:80px;
-  }
+  body {
+  margin: 0;
+  padding: 0;
+}
+#wrap {
+  width: 100%;
+  height: 100vh;
+  background-color: #fff;
+  text-align: center;
+  line-height: 100vh;
+  font-size: 30px;
+  font-size: 12px;
 }
 </style>
-</head>
-<body>
-<div id="display"></div><!-- accXの値表示用 -->
-<div id="display2"></div><!-- flugの値表示用 -->
-
 <script>
-var flug=0;
-var target2 = document.getElementById('display2');
-target2.innerHTML = flug;
+  var wrap = document.getElementById('wrap');
+var y; // 縦方向の加速度を取得するための変数
+var size = 20; // 振ったと認識するサイズ
+var shakeFlag = true; // trueであればcountをプラス、falseであればマイナスにするためのフラグ
+var count = 0; // 振ったらこれがたまる。たまった量に応じて何かする
 
-window.addEventListener("devicemotion", function(e){
-  // 傾きの加速度
-  var accX = e.acceleration.x  // 左右方向
-  //var accY = e.acceleration.y  // 前後方向
-  //var accZ = e.acceleration.z  // 上下方向
 
-  var target = document.getElementById('display');
-  target.innerHTML = accX.toFixed(2);//小数点以下2桁で表示
-
-  if (accX > 6) {//accxが、6より大きい時flugを1UP
-    flug++;
-    target2.innerHTML = flug;
-    if(flug > 9){//振動が 9回以上になったら
-      window.location.href = "https://www.google.co.jp/";
+// 加速度が変化すると
+window.addEventListener('devicemotion',  function (event) {
+  // 加速度 Y軸
+  y = event.acceleration.y;
+  
+  // 加速度が、sizeに指定した量より大きいもしくは-sizeより小さいときに、countを操作
+  if (y < -size || y > size) {
+    // shakeFlagがtrueなら
+    if (shakeFlag) {
+      // countをプラス
+      count++;
+    }
+    // shakeFlagがfalseなら
+    else {
+      // countをマイナス
+      count--;
     }
   }
+  
+  // 色を変える処理
+  switch(count) {
+    case 0: // countが0のとき
+      wrap.style.backgroundColor = '#fff'; // ここで背景の色を変えていく
+      shakeFlag = true; // shakeFlagをtrueにする
+      break;
+    case 20:
+      wrap.style.backgroundColor = '#ffe';
+      break;
+    case 40:
+      wrap.style.backgroundColor = '#ffd';
+      break;
+    case 60:
+      wrap.style.backgroundColor = '#ffc';
+      break;
+    case 80:
+      wrap.style.backgroundColor = '#ffb';
+      break;
+    case 100:
+      wrap.style.backgroundColor = '#ffa';
+      break;
+    case 120:
+      wrap.style.backgroundColor = '#ff9';
+      break;
+    case 140:
+      wrap.style.backgroundColor = '#ff8';
+      break;
+    case 160:
+      wrap.style.backgroundColor = '#ff7';
+      break;
+    case 180:
+      wrap.style.backgroundColor = '#ff6';
+      break;
+    case 200:
+      wrap.style.backgroundColor = '#ff5';
+      break;
+    case 220:
+      wrap.style.backgroundColor = '#ff4';
+      break;
+    case 240:
+      wrap.style.backgroundColor = '#ff3';
+      break;
+    case 260:
+      wrap.style.backgroundColor = '#ff2';
+      break;
+    case 280:
+      wrap.style.backgroundColor = '#ff1';
+      break;
+    case 300:
+      wrap.style.backgroundColor = '#ff0';
+      break;
+    case 320:
+      wrap.style.backgroundColor = '#fe0';
+      break;
+    case 340:
+      wrap.style.backgroundColor = '#fd0';
+      break;
+    case 360:
+      wrap.style.backgroundColor = '#fc0';
+      break;
+    case 380:
+      wrap.style.backgroundColor = '#fb0';
+      break;
+    case 400:
+      wrap.style.backgroundColor = '#fa0';
+      break;
+    case 420:
+      wrap.style.backgroundColor = '#f90';
+      break;
+    case 440:
+      wrap.style.backgroundColor = '#f80';
+      break;
+    case 460:
+      wrap.style.backgroundColor = '#f70';
+      break;
+    case 480:
+      wrap.style.backgroundColor = '#f60';
+      break;
+    case 500:
+      wrap.style.backgroundColor = '#f50';
+      break;
+    case 520:
+      wrap.style.backgroundColor = '#f40';
+      break;
+    case 540:
+      wrap.style.backgroundColor = '#f30';
+      break;
+    case 560:
+      wrap.style.backgroundColor = '#f20';
+      break;
+    case 580:
+      wrap.style.backgroundColor = '#f10';
+      break;
+    case 600:
+      wrap.style.backgroundColor = '#f00';
+      break;
+    case 620:
+      wrap.style.backgroundColor = '#e00';
+      break;
+    case 640:
+      wrap.style.backgroundColor = '#d00';
+      break;
+    case 660:
+      wrap.style.backgroundColor = '#c00';
+      break;
+    case 680:
+      wrap.style.backgroundColor = '#b00';
+      break;
+    case 700:
+      wrap.style.backgroundColor = '#a00';
+      break;
+    case 720:
+      wrap.style.backgroundColor = '#900';
+      break;
+    case 740:
+      wrap.style.backgroundColor = '#800';
+      break;
+    case 760:
+      wrap.style.backgroundColor = '#700';
+      break;
+    case 780:
+      wrap.style.backgroundColor = '#600';
+      break;
+    case 800:
+      wrap.style.backgroundColor = '#500';
+      break;
+    case 820:
+      wrap.style.backgroundColor = '#400';
+      break;
+    case 840:
+      wrap.style.backgroundColor = '#300';
+      break;
+    case 860:
+      wrap.style.backgroundColor = '#200';
+      break;
+    case 880:
+      wrap.style.backgroundColor = '#100';
+      break;
+    case 900: // countが900のとき
+      wrap.style.backgroundColor = '#000';
+      shakeFlag = false; // shakeFlagをfalseにする
+      break;
+  }
 });
-
 </script>
+</head>
+<body>
+  <div id="wrap">
+  スマホを振ると色が変わるよ
+</div>
 </body>
 </html>
