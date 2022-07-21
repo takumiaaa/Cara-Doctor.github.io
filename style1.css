@@ -9,8 +9,8 @@
     }
 
     .sample_box1 {
-        width: 320PX;
-        height: 570px;
+        width: 375PX;
+        height: 666px;
         border: solid 2px #000000;
         display: block;
         margin-left: auto;
@@ -21,8 +21,8 @@
     .back{
         background-image: url(背景.png);
         background-size: cover;
-        width: 320px;
-        height: 570px;
+        width: 375px;
+        height: 666px;
     }
 
     .rogo {
