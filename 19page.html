@@ -3,15 +3,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>19page</title>
 </head>
 <style>
     .back{
         background-image: url(背景.png);
         background-size: cover;
-        width: 377px;
+        width: 378px;
         height: 643px;
         display: block;
         margin-left: auto;
@@ -19,7 +17,7 @@
     }
 
     .syuuryou {
-        width: 140px;
+        width: 160px;
         height: auto;
         position: relative;
         top: 50px;
@@ -27,17 +25,33 @@
         margin-left: auto;
         margin-right: auto;
     }
-    .maru {
-        width: 50px;
+    .animation {
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-duration: 0.3s;
+        width: 70px;
         height: auto;
+        top: 80px;
         position: relative;
-        top: 100px;
         display: block;
         margin-left: auto;
         margin-right: auto;
     }
+
+    .keyframe5 {
+        animation-name: anim_sc;
+        transform: scale(0.8, 0.8);
+    }
+
+    @keyframes anim_sc {
+        100% {
+            transform: scale(1, 1);
+        }
+    }
+
     .doctor {
-        width: 180px;
+        width: 200px;
         height: auto;
         position: relative;
         top: 150px;
@@ -47,7 +61,7 @@
     }
 
     .watasu {
-        width: 220px;
+        width: 240px;
         height: auto;
         position: relative;
         top: 200px;
@@ -67,7 +81,7 @@
 <body>
         <div class="back">
         <img class="syuuryou" src="19ページ\dai mei 19.png">
-        <img class="maru" src="19ページ\maru 19.png">
+        <img src="19ページ\maru 19.png" class="keyframe5 animation">
         <img class="doctor" src="19ページ\doctor 19.png">
         <a href="21page.html">
             <img class="watasu" src="19ページ\kusuri watasu 19.png" ontouchstart="">
