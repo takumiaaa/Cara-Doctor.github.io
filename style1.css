@@ -5,9 +5,9 @@ body{
 .back {
         background-image: url(背景.png);
         background-size: cover;
-        width: 385px; 
+        width: 380px; 
         height: 643px;
-        position: absolute;
+        position: relative;
         display: block;
         margin-left: auto;
         margin-right: auto; 
