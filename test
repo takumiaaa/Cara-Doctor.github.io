@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8"/>
+<style>
+@media screen and (max-width: 480px) {
+  body{
+    font-size:80px;
+  }
+}
+</style>
+</head>
+<body>
+<div id="display"></div><!-- accXの値表示用 -->
+<div id="display2"></div><!-- flugの値表示用 -->
+
+<script>
+var flug=0;
+var target2 = document.getElementById('display2');
+target2.innerHTML = flug;
+
+window.addEventListener("devicemotion", function(e){
+  // 傾きの加速度
+  var accX = e.acceleration.x  // 左右方向
+  //var accY = e.acceleration.y  // 前後方向
+  //var accZ = e.acceleration.z  // 上下方向
+
+  var target = document.getElementById('display');
+  target.innerHTML = accX.toFixed(2);//小数点以下2桁で表示
+
+  if (accX > 6) {//accxが、6より大きい時flugを1UP
+    flug++;
+    target2.innerHTML = flug;
+    if(flug > 9){//振動が 9回以上になったら
+      window.location.href = "https://www.google.co.jp/";
+    }
+  }
+});
+
+</script>
+</body>
+</html>
