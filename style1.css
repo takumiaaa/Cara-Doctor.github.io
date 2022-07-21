@@ -6,7 +6,7 @@ body{
         background-image: url(背景.png);
         background-size: cover;
         width: 345px; 
-        height: 650px;
+        min-height: 100vh;
         position: absolute;
         /* display: block;
         margin-left: auto;
