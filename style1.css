@@ -2,16 +2,6 @@ body{
         margin: 0;
         padding 0;
 }
-.part-img {
-        background-image: url(back.png);
-        /* 画像のURLを指定       */
-        background-size: contain;
-        /* 画像のサイズを指定    */
-        width: 100%;
-        /* 横幅のサイズを指定    */
-        height: 100%;
-    }
-
     .sample_box1 {
         border: solid 2px #000000;
         height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
@@ -23,10 +13,11 @@ body{
 
     .back{
         background-image: url(背景.png);
-        height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
-  height: calc(var(--vh, 1vh) * 100);
+        
   margin: 0 auto;
-  max-width: 100%;
+  width: 100%;
+  height: auto;
+  
     }
 
     .rogo {
