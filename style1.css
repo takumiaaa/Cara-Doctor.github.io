@@ -13,20 +13,20 @@ body{
     }
 
     .sample_box1 {
-        width: 375PX;
-        height: 666px;
         border: solid 2px #000000;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
+        height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
+  margin: 0 auto;
+  max-width: 100%;
         /*線*/
     }
 
     .back{
         background-image: url(背景.png);
-        background-size: cover;
-        width: 375px;
-        height: 666px;
+        height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
+  margin: 0 auto;
+  max-width: 100%;
     }
 
     .rogo {
