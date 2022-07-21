@@ -2,22 +2,15 @@ body{
         margin: 0;
         padding 0;
 }
-    .sample_box1 {
-        border: solid 2px #000000;
-        height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
-  height: calc(var(--vh, 1vh) * 100);
-  margin: 0 auto;
-  max-width: 100%;
-        /*線*/
-    }
-
-    .back{
+back {
         background-image: url(背景.png);
-        
-  margin: 0 auto;
-  width: 100%;
-  height: auto;
-  
+        background-size: cover;
+        min-width: 100vw;
+        min-height:  100vh;
+        position: absolute;
+        /* display: block;
+        margin-left: auto;
+        margin-right: auto; */
     }
 
     .rogo {
