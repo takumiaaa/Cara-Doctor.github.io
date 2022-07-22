@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  /* グローバルな設定 */
+* {margin:0px; padding:0px;}
+body {width:500px;}
+.title {padding:10px; margin-top:44px;}
+.main {padding-left:10px; margin:auto;}
+
+/* 色や太さを選択する部分のCSS */
+.toolbar li {width:44px; height:44px; margin:auto;list-style-type: none; border:1px solid #ccc; border-radius:6px; margin:10px; display:block; float:left;}
+#black {background-color:black;}
+#red {background-color:red;}
+#green {background-color:green;}
+#blue {background-color:blue;}
+#small {text-align:center; line-height:44px; font-size:100%;}
+#middle {text-align:center; line-height:44px; font-size:200%;}
+#large {text-align:center; line-height:44px; font-size:400%;}
+
+/* お絵描きする部分のCSS */
+.canvas {width:450px; height:400px; border:1px solid #ccc;}
+.canvas canvas {width:450px; height:400px;}
+
+/* 削除ボタンのCSS */
+#delete_button {width:450px; height:44px; margin-top:10px;}
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+window.addEventListener("load", function () {
+
+  // 必要な変数を宣言しておく
+  var canvas = document.getElementById("myCanvas");
+  var c = canvas.getContext("2d");
+  var w = 450;
+  var h = 400;
+  var drawing = false;
+  var oldPos;
+
+  // CanvasとContextを初期化する
+  canvas.width = w;
+  canvas.height = h;
+  c.strokeStyle = "#000000";
+  c.lineWidth = 5;
+  c.lineJoin = "round";
+  c.lineCap = "round";
+
+  // タップ開始時に、絵を描く準備をする
+  canvas.addEventListener("touchstart", function (event) {
+    drawing = true;
+    oldPos = getPosT(event);
+  }, false);
+
+  // タップ終了時に、絵を描く後処理を行う
+  canvas.addEventListener("touchend", function () {
+    drawing = false;
+  }, false);
+
+  // gestureイベント（２本指以上で触ると発生するやつ）の
+  // 終了時にも絵を描く後処理を行う
+  canvas.addEventListener("gestureend", function () {
+    console.log("mouseout");
+    drawing = false;
+  }, false);
+
+  // 実際に絵を描く処理
+  // 前回に保存した位置から現在の位置迄線を引く
+  canvas.addEventListener("touchmove", function (event) {
+    var pos = getPosT(event);
+    if (drawing) {
+      c.beginPath();
+      c.moveTo(oldPos.x, oldPos.y);
+      c.lineTo(pos.x, pos.y);
+      c.stroke();
+      c.closePath();
+      oldPos = pos;
+    }
+  }, false);
+
+  // タップ位置を取得する為の関数群
+  function scrollX(){return document.documentElement.scrollLeft || document.body.scrollLeft;}
+  function scrollY(){return document.documentElement.scrollTop || document.body.scrollTop;}
+  function getPosT (event) {
+    var mouseX = event.touches[0].clientX - $(canvas).position().left + scrollX();
+    var mouseY = event.touches[0].clientY - $(canvas).position().top + scrollY();
+    return {x:mouseX, y:mouseY};
+  }
+                                   
+  // 色と線の太さを設定する関数
+  $("#black").click(function () {c.strokeStyle = "black";});
+  $("#blue").click(function () {c.strokeStyle = "blue";});
+  $("#red").click(function () {c.strokeStyle = "red";});
+  $("#green").click(function () {c.strokeStyle = "green";});
+  $("#small").click(function () {c.lineWidth = 5;});
+  $("#middle").click(function () {c.lineWidth = 10;});
+  $("#large").click(function () {c.lineWidth = 20;});
+ 
+  // 削除ボタンの動作                                 
+  $("delete_button").click(function () {
+    c.clearRect(0, 0, $(canvas).width(), $(canvas).height());
+  });
+
+}, false);
+</script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+window.addEventListener("load", function () {
+
+  // 必要な変数を宣言しておく
+  var canvas = document.getElementById("myCanvas");
+  var c = canvas.getContext("2d");
+  var w = 450;
+  var h = 400;
+  var drawing = false;
+  var oldPos;
+
+  // CanvasとContextを初期化する
+  canvas.width = w;
+  canvas.height = h;
+  c.strokeStyle = "#000000";
+  c.lineWidth = 5;
+  c.lineJoin = "round";
+  c.lineCap = "round";
+
+  // タップ開始時に、絵を描く準備をする
+  canvas.addEventListener("touchstart", function (event) {
+    drawing = true;
+    oldPos = getPosT(event);
+  }, false);
+
+  // タップ終了時に、絵を描く後処理を行う
+  canvas.addEventListener("touchend", function () {
+    drawing = false;
+  }, false);
+
+  // gestureイベント（２本指以上で触ると発生するやつ）の
+  // 終了時にも絵を描く後処理を行う
+  canvas.addEventListener("gestureend", function () {
+    console.log("mouseout");
+    drawing = false;
+  }, false);
+
+  // 実際に絵を描く処理
+  // 前回に保存した位置から現在の位置迄線を引く
+  canvas.addEventListener("touchmove", function (event) {
+    var pos = getPosT(event);
+    if (drawing) {
+      c.beginPath();
+      c.moveTo(oldPos.x, oldPos.y);
+      c.lineTo(pos.x, pos.y);
+      c.stroke();
+      c.closePath();
+      oldPos = pos;
+    }
+  }, false);
+
+  // タップ位置を取得する為の関数群
+  function scrollX(){return document.documentElement.scrollLeft || document.body.scrollLeft;}
+  function scrollY(){return document.documentElement.scrollTop || document.body.scrollTop;}
+  function getPosT (event) {
+    var mouseX = event.touches[0].clientX - $(canvas).position().left + scrollX();
+    var mouseY = event.touches[0].clientY - $(canvas).position().top + scrollY();
+    return {x:mouseX, y:mouseY};
+  }
+                                   
+  // 色と線の太さを設定する関数
+  $("#black").click(function () {c.strokeStyle = "black";});
+  $("#blue").click(function () {c.strokeStyle = "blue";});
+  $("#red").click(function () {c.strokeStyle = "red";});
+  $("#green").click(function () {c.strokeStyle = "green";});
+  $("#small").click(function () {c.lineWidth = 5;});
+  $("#middle").click(function () {c.lineWidth = 10;});
+  $("#large").click(function () {c.lineWidth = 20;});
+ 
+  // 削除ボタンの動作                                 
+  $("delete_button").click(function () {
+    c.clearRect(0, 0, $(canvas).width(), $(canvas).height());
+  });
+
+}, false);
+</script>
+<body>
+  <div class="main">
+    <div class="toolbar">
+      <ul>
+        <li id="black"></li>
+        <li id="blue"></li>
+        <li id="red"></li>
+        <li id="green"></li>
+        <li id="small">S</li>
+        <li id="middle">M</li>
+        <li id="large">L</li>
+      </ul>
+    </div>
+    <div class="canvas"><canvas id="myCanvas"></canvas></div>
+    <input id="delete_button" type="button" value="delete"/>
+  </div>
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8page</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    .back {
+        background-image: url(背景.png);
+        background-size: cover;
+        width: 378px;
+        height: 643px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .kusuri {
+        width: 200px;
+        height: auto;
+        position: relative;
+        top: 50px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .namida1 {
+        width: 7px;
+        height: auto;
+        position: absolute;
+        top: 245px;
+        left: 41%;
+        animation-name: namida1;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-duration: 0.2s;
+
+    }
+
+    @keyframes namida1 {
+        0% {
+            transform: translate(0, 0px);
+        }
+
+        100% {
+            transform: translate(0, -5px)
+        }
+    }
+
+    .namida2 {
+        width: 7px;
+        height: auto;
+        position: absolute;
+        top: 255px;
+        left: 40%;
+        animation-name: namida2;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-duration: 0.2s;
+
+    }
+
+    @keyframes namida2 {
+        0% {
+            transform: translate(0, 0px);
+        }
+
+        100% {
+            transform: translate(0, -5px)
+        }
+    }
+    .namida3 {
+        width: 7px;
+        height: auto;
+        position: absolute;
+        top: 265px;
+        left: 39%;
+        animation-name: namida3;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-duration: 0.2s;
+
+    }
+
+    @keyframes namida3 {
+        0% {
+            transform: translate(0, 0px);
+        }
+
+        100% {
+            transform: translate(0, -2px)
+        }
+    }
+    .namida4 {
+        width: 7px;
+        height: auto;
+        position: absolute;
+        top: 245px;
+        left: 58%;
+        animation-name: namida4;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-duration: 0.2s;
+
+    }
+
+    @keyframes namida4 {
+        0% {
+            transform: translate(0, 0px);
+        }
+
+        100% {
+            transform: translate(0, -2px)
+        }
+    }
+
+    .namida5 {
+        width: 7px;
+        height: auto;
+        position: absolute;
+        top: 255px;
+        left: 59%;
+        animation-name: namida5;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-duration: 0.2s;
+
+    }
+
+    @keyframes namida5 {
+        0% {
+            transform: translate(0, 0px);
+        }
+
+        100% {
+            transform: translate(0, -2px)
+        }
+    }
+    .namida6 {
+        width: 7px;
+        height: auto;
+        position: absolute;
+        top: 265px;
+        left: 60%;
+        animation-name: namida6;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-duration: 0.2s;
+
+    }
+
+    @keyframes namida6 {
+        0% {
+            transform: translate(0, 0px);
+        }
+
+        100% {
+            transform: translate(0, -3px)
+        }
+    }
+
+    .penta {
+        width: 200px;
+        height: auto;
+        position: relative;
+        top: 120px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        -webkit-animation: buruburu 0.3s infinite linear alternate;
+        animation: buruburu 0.2s infinite linear alternate;
+    }
+
+    @-webkit-keyframes buruburu {
+        0% {
+            -webkit-transform: translate(0, 0) rotate(-3deg);
+        }
+
+        50% {
+            -webkit-transform: translate(0, -1px) rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: translate(0, 0)rotate(3deg);
+        }
+    }
+
+    @keyframes buruburu {
+        0% {
+            transform: translate(0, 0) rotate(-3deg);
+        }
+
+        50% {
+            transform: translate(0, -1px) rotate(0deg);
+        }
+
+        100% {
+            transform: translate(0, 0)rotate(3deg);
+        }
+    }
+
+    .hudou {
+        width: 170px;
+        height: auto;
+        position: relative;
+        top: 120px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .sasaki {
+        width: 170px;
+        height: auto;
+        position: relative;
+        top: 120px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .start1 {
+        width: 170px;
+        height: auto;
+        position: relative;
+        top: 190px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    img.start1:active {
+        position: relative;
+        top: 193px;
+    }
+
+    .modoru1 {
+        width: 170px;
+        height: auto;
+        position: relative;
+        top: 200px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    img.modoru1:active {
+        position: relative;
+        top: 203px;
+    }
+
+    .start2 {
+        width: 170px;
+        height: auto;
+        position: relative;
+        top: 170px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    img.start2:active {
+        position: relative;
+        top: 173px;
+    }
+
+    .modoru2 {
+        width: 170px;
+        height: auto;
+        position: relative;
+        top: 180px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    img.modoru2:active {
+        position: relative;
+        top: 183px;
+    }
+
+    .start3 {
+        width: 170px;
+        height: auto;
+        position: relative;
+        top: 190px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    img.start3:active {
+        position: relative;
+        top: 193px;
+    }
+
+    .modoru3 {
+        width: 170px;
+        height: auto;
+        position: relative;
+        top: 200px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    img.modoru3:active {
+        position: relative;
+        top: 203px;
+    }
+</style>
+
+<body>
+    <div class="back">
+
+        <img class="kusuri" src="8ページ\8ページ\dai mei 8.png">
+        <script lang="ja">
+            img = new Array();
+            var link = new Array();
+            link[0] = "9page.html";
+            img[0] = "8ページ/8ページ/aono penta 8.png";
+            link[1] = "9page-hudou.html";
+            img[1] = "8ページ/8ページ/hudou 8.png";
+            link[2] = "9page-sasaki.html";
+            img[2] = "8ページ/8ページ/sasaki 8.png";
+
+
+
+            x = Math.floor(Math.random() * img.length);
+            if (x == 0) {
+                document.write("<img class=penta src='" + img[x] + "' >");
+                document.write("<img class=namida1 src='8ページ/8ページ/namida.png" + "' >");
+                document.write("<img class=namida2 src='8ページ/8ページ/namida.png" + "' >");
+                document.write("<img class=namida3 src='8ページ/8ページ/namida.png" + "' >");
+                document.write("<img class=namida4 src='8ページ/8ページ/namida.png" + "' >");
+                document.write("<img class=namida5 src='8ページ/8ページ/namida.png" + "' >");
+                document.write("<img class=namida6 src='8ページ/8ページ/namida.png" + "' >");
+                document.write('<A href=' + link[x] + '>' + "<img class=start1 src='8ページ/8ページ/start 8.png" + "'>" + '</A>');
+                document.write('<A href=7page.html' + '>' + "<img class=modoru1 src='8ページ/8ページ/modoru 8.png" + "'>" + '</A>');
+            }
+            else if (x == 1) {
+                document.write("<img class=hudou src='" + img[x] + "' >");
+                document.write('<A href=' + link[x] + '>' + "<img class=start2 src='8ページ/8ページ/start 8.png" + "'>" + '</A>');
+                document.write('<A href=7page.html' + '>' + "<img class=modoru2 src='8ページ/8ページ/modoru 8.png" + "'>" + '</A>');
+            }
+            else if (x == 2) {
+                document.write("<img class=sasaki src='" + img[x] + "' >");
+                document.write('<A href=' + link[x] + '>' + "<img class=start3 src='8ページ/8ページ/start 8.png" + "'>" + '</A>');
+                document.write('<A href=7page.html' + '>' + "<img class=modoru3 src='8ページ/8ページ/modoru 8.png" + "'>" + '</A>');
+            }
+        </script>
+        
+
+    </div>
+</body>
+
+</html>

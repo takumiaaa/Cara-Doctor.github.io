@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>49page</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    .back {
+        background-image: url(背景.png);
+        background-size: cover;
+        width: 378px;
+        height: 643px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .iro {
+        width: 180px;
+        height: auto;
+        position: relative;
+        top: 50px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .sikenkann {
+        width: 80px;
+        height: auto;
+        position: relative;
+        top: 80px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .tugi {
+        width: 120px;
+        height: auto;
+        position: relative;
+        top: -200px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    img.tugi:active {
+        position: relative;
+        top: -197px;
+    }
+
+    .furu {
+        width: 120px;
+        height: auto;
+        position: relative;
+        top: -160px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+
+    #v {
+        border: 1px solid #fff;
+        width: 300px;
+        height: 200px;
+        margin: 0%;
+        background-color: #fff;
+    }
+
+    input[type=range] {
+        width: 300px;
+    }
+
+    #colorInfo1 {
+        position: relative;
+        border: 1px solid transparent;
+        border-bottom-right-radius: 20px 30px;
+        border-bottom-left-radius: 20px 30px;
+        height: 230px;
+        width: 71px;
+        top: -155px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+<script>
+    //各RGBを格納するグローバル変数を定義しました
+
+    var mainjs_vali = "a";
+    let isStatus = true;
+
+    //各RGBを格納するグローバル変数を定義しました
+    let G_colorData1_R;
+    let G_colorData1_G;
+    let G_colorData1_B;
+
+    let G_colorData2_R;
+    let G_colorData2_G;
+    let G_colorData2_B;
+
+    //async function data1() {
+    //onclickからの値を引数で読み込むために少し変えています．シリアルから読み込む時は変更不要　井上
+    async function data1(inputValue) {
+
+        /* ここの処理はシリアルデータの読み込みなので93行目までコメントアウトしています　by 井上
+        let func_vali;
+        let port;
+        try {
+          port = await navigator.serial.requestPort();
+          await port.open({ baudRate: 115200 });
+          while (port.readable) {
+            const reader = port.readable.getReader();
+            try {
+              while (isStatus) {
+                const { value, done } = await reader.read();
+                if (done) {
+                  addSerial("Canceled\n");
+                  break;
+                }
+                const inputValue = new TextDecoder().decode(value);
+        */
+        addSerial(inputValue);
+
+        /*
+  
+              }
+            } catch (error) {
+              addSerial("Error: Read" + error + "\n");
+            } finally {
+              reader.releaseLock();
+            }
+  
+          }
+          return "naruki";
+        }
+        catch (error) {
+          addSerial("Error: Open" + error + "\n");
+        }
+        */
+
+        function addSerial(msg) {
+            var textarea = document.getElementById('outputArea');
+            let colorInfo1 = document.getElementById("colorInfo1");
+            let data = msg.split(",");
+
+            if (data.length === 3) {
+                colorData1 = { R: data[0], G: data[1], B: data[2] };
+                //func_vali = colorData1.R
+                //fucn_valiの変数名はわかりにくいので，G_colorData1_Rにしました
+
+                G_colorData1_R = colorData1.R;
+                G_colorData1_G = colorData1.G;
+                G_colorData1_B = colorData1.B;
+
+                colorInfo1.style.backgroundColor = `rgba(${colorData1.R},${colorData1.G},${colorData1.B},1)`;
+            }
+            //console.log(x)
+            //console.log(y)
+        }
+
+    }
+
+
+    const StatusChangeMethod = () => {
+        isStatus = isStatus ? false : true;
+    }
+
+
+    function data4() {
+        let C = 204;
+        let m = 153;
+        let y = 102;
+        // c=204,m=153,y=102 ペンタ君の場合の正解値
+        var target = document.getElementById("sample")
+
+        if (C == Math.floor((Number(G_colorData1_R) + Number(G_colorData2_R)) - 255) && m == Math.floor((Number(G_colorData1_G) + Number(G_colorData2_G)) - 255) && y == Math.floor((Number(G_colorData1_B) + Number(G_colorData2_B)) - 255)) {
+            target.href = "50page.html";
+        }
+        else {
+            target.href = "51page.html";
+        }
+    }
+
+
+</script>
+
+<body>
+    <div class="back">
+        <img class="iro" src="49ページ\49ページ\dai mei 49.png">
+        <img class="sikenkann" src="15ページ\sikennkann 15.png">
+        <div id="colorInfo1"></div>
+        </div>
+
+        <input class="tugi" type="image" src="48ページ\48ページ\start 48.png" onclick="data1('204,255,153')">
+        <a id="sample" href="http://www.yahoo.co.jp"><input class="furu" type="image" src="50ページ\tasikameru 50.png"
+                onclick="data4()"></a>
+    </div>
+</body>
+
+</html>
