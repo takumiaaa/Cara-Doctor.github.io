@@ -1,204 +1,342 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta charset="utf-8">
+    <title>15page</title>
 </head>
 <style>
-  /* グローバルな設定 */
-* {margin:0px; padding:0px;}
-body {width:500px;}
-.title {padding:10px; margin-top:44px;}
-.main {padding-left:10px; margin:auto;}
+    .sample_box1 {
+        width: 320PX;
+        height: 570px;
+        border: solid 2px #000000;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        /*線*/
+    }
+    .back{
+        background-image: url(背景.png);
+        background-size: cover;
+        width: 320px;
+        height: 570px;
+    }
 
-/* 色や太さを選択する部分のCSS */
-.toolbar li {width:44px; height:44px; margin:auto;list-style-type: none; border:1px solid #ccc; border-radius:6px; margin:10px; display:block; float:left;}
-#black {background-color:black;}
-#red {background-color:red;}
-#green {background-color:green;}
-#blue {background-color:blue;}
-#small {text-align:center; line-height:44px; font-size:100%;}
-#middle {text-align:center; line-height:44px; font-size:200%;}
-#large {text-align:center; line-height:44px; font-size:400%;}
+    .kusuri {
+        width: 180px;
+        height: auto;
+        position: relative;
+        top: 50px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-/* お絵描きする部分のCSS */
-.canvas {width:450px; height:400px; border:1px solid #ccc;}
-.canvas canvas {width:450px; height:400px;}
+    .sikenkann {
+        width: 60px;
+        height: auto;
+        position: relative;
+        top: 80px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-/* 削除ボタンのCSS */
-#delete_button {width:450px; height:44px; margin-top:10px;}
+    .furu {
+        width: 150px;
+        height: auto;
+        position: relative;
+        top: 110px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    img.furu:active {
+        position: relative;
+        top: 113px;
+    }
+
+    .tugi {
+        width: 100px;
+        height: auto;
+        position: relative;
+        top: -250px;
+        left: 50px;
+    }
+
+    img.tugi:active {
+        position: relative;
+        top: -247px;
+    }
+
+    .tugi2 {
+        width: 100px;
+        height: auto;
+        position: relative;
+        top: -250px;
+        left: 50px;
+    }
+
+    img.tugi2:active {
+        position: relative;
+        top: -247px;
+    }
+
+    .mazeru {
+        width: 100px;
+        height: auto;
+        position: relative;
+        top: -170px;
+        left: -160px;
+    }
+
+    img.mazeru:active {
+        position: relative;
+        top: -167px;
+    }
+    .furu {
+        width: 100px;
+        height: auto;
+        position: relative;
+        top: -230px;
+        left: 45px;
+    }
+    
+
+    #v {
+        border: 1px solid #fff;
+        width: 300px;
+        height: 200px;
+        margin: 0%;
+        background-color: #fff;
+    }
+
+    input[type=range] {
+        width: 300px;
+    }
+
+    #colorInfo2 {
+        position: relative;
+        /* background-color: yellowgreen; */
+        border: 1px solid transparent;
+        height: 84px;
+        width: 52px;
+        top: -184px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #colorInfo1 {
+        position: relative;
+        /* background-color: aqua; */
+        border: 1px solid transparent;
+        border-bottom-right-radius: 10px 20px;
+        border-bottom-left-radius: 10px 20px;
+        height: 86px;
+        width: 52px;
+        top: -10px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+    #colorInfo3 {
+        position: relative;
+        border: 1px solid transparent;
+        border-bottom-right-radius: 10px 20px;
+        border-bottom-left-radius: 10px 20px;
+        height: 172px;
+        width: 52px;
+        top: -270px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 </style>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-<script type="text/javascript">
-window.addEventListener("load", function () {
+<script>
+    //各RGBを格納するグローバル変数を定義しました
+    let G_colorData1_R;
+    let G_colorData1_G;
+    let G_colorData1_B;
 
-  // 必要な変数を宣言しておく
-  var canvas = document.getElementById("myCanvas");
-  var c = canvas.getContext("2d");
-  var w = 450;
-  var h = 400;
-  var drawing = false;
-  var oldPos;
+    let G_colorData2_R;
+    let G_colorData2_G;
+    let G_colorData2_B;
 
-  // CanvasとContextを初期化する
-  canvas.width = w;
-  canvas.height = h;
-  c.strokeStyle = "#000000";
-  c.lineWidth = 5;
-  c.lineJoin = "round";
-  c.lineCap = "round";
+    //async function data1() {
+    async function data1() {
+        let port;
+        try {
+            port = await navigator.serial.requestPort();
+            await port.open({ baudRate: 115200 });
+            while (port.readable) {
+                const reader = port.readable.getReader();
+                try {
+                    while (true) {
+                        const { value, done } = await reader.read();
+                        if (done) {
+                            addSerial("Canceled\n");
+                            break;
+                        }
+                        const inputValue = new TextDecoder().decode(value);
+                        addSerial(inputValue);
+                    }
+                } catch (error) {
+                    addSerial("Error: Read" + error + "\n");
+                } finally {
+                    reader.releaseLock();
+                }
+            }
+        }
+        catch (error) {
+            addSerial("Error: Open" + error + "\n");
+        }
 
-  // タップ開始時に、絵を描く準備をする
-  canvas.addEventListener("touchstart", function (event) {
-    drawing = true;
-    oldPos = getPosT(event);
-  }, false);
 
-  // タップ終了時に、絵を描く後処理を行う
-  canvas.addEventListener("touchend", function () {
-    drawing = false;
-  }, false);
+        function addSerial(msg) {
+            var textarea = document.getElementById('outputArea');
+            let colorInfo1 = document.getElementById("colorInfo1");
+            let data = msg.split(",");
 
-  // gestureイベント（２本指以上で触ると発生するやつ）の
-  // 終了時にも絵を描く後処理を行う
-  canvas.addEventListener("gestureend", function () {
-    console.log("mouseout");
-    drawing = false;
-  }, false);
+            if (data.length === 3) {
+                let colorData1 = { R: data[0], G: data[1], B: data[2] };
+                // if(colorData1.R < 50){
+                //     if(colorData1.G < 50){
+                //         if(colorData1.B < 50){
 
-  // 実際に絵を描く処理
-  // 前回に保存した位置から現在の位置迄線を引く
-  canvas.addEventListener("touchmove", function (event) {
-    var pos = getPosT(event);
-    if (drawing) {
-      c.beginPath();
-      c.moveTo(oldPos.x, oldPos.y);
-      c.lineTo(pos.x, pos.y);
-      c.stroke();
-      c.closePath();
-      oldPos = pos;
+                //         }
+                //     }
+                // }
+                console.log("R:" +colorData1.R);
+                console.log("G:" +colorData1.G);
+                console.log("B:" +colorData1.B);
+
+                
+                colorInfo1.style.backgroundColor = `rgba(${colorData1.R},${colorData1.G},${colorData1.B},1)`;
+                G_colorData1_R = colorData1.R;
+                G_colorData1_G = colorData1.G;
+                G_colorData1_B = colorData1.B;
+            }
+        }
     }
-  }, false);
 
-  // タップ位置を取得する為の関数群
-  function scrollX(){return document.documentElement.scrollLeft || document.body.scrollLeft;}
-  function scrollY(){return document.documentElement.scrollTop || document.body.scrollTop;}
-  function getPosT (event) {
-    var mouseX = event.touches[0].clientX - $(canvas).position().left + scrollX();
-    var mouseY = event.touches[0].clientY - $(canvas).position().top + scrollY();
-    return {x:mouseX, y:mouseY};
-  }
-                                   
-  // 色と線の太さを設定する関数
-  $("#black").click(function () {c.strokeStyle = "black";});
-  $("#blue").click(function () {c.strokeStyle = "blue";});
-  $("#red").click(function () {c.strokeStyle = "red";});
-  $("#green").click(function () {c.strokeStyle = "green";});
-  $("#small").click(function () {c.lineWidth = 5;});
-  $("#middle").click(function () {c.lineWidth = 10;});
-  $("#large").click(function () {c.lineWidth = 20;});
- 
-  // 削除ボタンの動作                                 
-  $("delete_button").click(function () {
-    c.clearRect(0, 0, $(canvas).width(), $(canvas).height());
-  });
+    //onclickからの値を引数で読み込むために少し変えています．シリアルから読み込む時は変更不要　井上
+    async function data2() {
+        let port;
+        try {
+            port = await navigator.serial.requestPort();
+            await port.open({ baudRate: 115200 });
+            while (port.readable) {
+                const reader = port.readable.getReader();
+                try {
+                    while (true) {
+                        const { value, done } = await reader.read();
+                        if (done) {
+                            addSerial("Canceled\n");
+                            break;
+                        }
+                        const inputValue = new TextDecoder().decode(value);
+                        addSerial(inputValue);
+                    }
+                } catch (error) {
+                    addSerial("Error: Read" + error + "\n");
+                } finally {
+                    reader.releaseLock();
+                }
+            }
+        } catch (error) {
+            addSerial("Error: Open" + error + "\n");
+        }
 
-}, false);
-</script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-<script type="text/javascript">
-window.addEventListener("load", function () {
 
-  // 必要な変数を宣言しておく
-  var canvas = document.getElementById("myCanvas");
-  var c = canvas.getContext("2d");
-  var w = 450;
-  var h = 400;
-  var drawing = false;
-  var oldPos;
 
-  // CanvasとContextを初期化する
-  canvas.width = w;
-  canvas.height = h;
-  c.strokeStyle = "#000000";
-  c.lineWidth = 5;
-  c.lineJoin = "round";
-  c.lineCap = "round";
 
-  // タップ開始時に、絵を描く準備をする
-  canvas.addEventListener("touchstart", function (event) {
-    drawing = true;
-    oldPos = getPosT(event);
-  }, false);
 
-  // タップ終了時に、絵を描く後処理を行う
-  canvas.addEventListener("touchend", function () {
-    drawing = false;
-  }, false);
+        function addSerial(msg) {
+            var textarea = document.getElementById('outputArea');
+            let colorInfo2 = document.getElementById("colorInfo2");
+            let data = msg.split(",");
 
-  // gestureイベント（２本指以上で触ると発生するやつ）の
-  // 終了時にも絵を描く後処理を行う
-  canvas.addEventListener("gestureend", function () {
-    console.log("mouseout");
-    drawing = false;
-  }, false);
 
-  // 実際に絵を描く処理
-  // 前回に保存した位置から現在の位置迄線を引く
-  canvas.addEventListener("touchmove", function (event) {
-    var pos = getPosT(event);
-    if (drawing) {
-      c.beginPath();
-      c.moveTo(oldPos.x, oldPos.y);
-      c.lineTo(pos.x, pos.y);
-      c.stroke();
-      c.closePath();
-      oldPos = pos;
+            if (data.length === 3) {
+                let colorData2 = { R: data[0], G: data[1], B: data[2] };
+                colorData2.R = 255;
+                colorData2.G = 153;
+                colorData2.B = 204;
+                colorInfo2.style.backgroundColor = `rgba(${colorData2.R},${colorData2.G},${colorData2.B},1)`
+                console.log(colorData2.B);
+
+                //2回目のデータをグローバル変数に格納
+                G_colorData2_R = colorData2.R;
+                G_colorData2_G = colorData2.G;
+                G_colorData2_B = colorData2.B;
+            }
+
+        }
     }
-  }, false);
 
-  // タップ位置を取得する為の関数群
-  function scrollX(){return document.documentElement.scrollLeft || document.body.scrollLeft;}
-  function scrollY(){return document.documentElement.scrollTop || document.body.scrollTop;}
-  function getPosT (event) {
-    var mouseX = event.touches[0].clientX - $(canvas).position().left + scrollX();
-    var mouseY = event.touches[0].clientY - $(canvas).position().top + scrollY();
-    return {x:mouseX, y:mouseY};
-  }
-                                   
-  // 色と線の太さを設定する関数
-  $("#black").click(function () {c.strokeStyle = "black";});
-  $("#blue").click(function () {c.strokeStyle = "blue";});
-  $("#red").click(function () {c.strokeStyle = "red";});
-  $("#green").click(function () {c.strokeStyle = "green";});
-  $("#small").click(function () {c.lineWidth = 5;});
-  $("#middle").click(function () {c.lineWidth = 10;});
-  $("#large").click(function () {c.lineWidth = 20;});
- 
-  // 削除ボタンの動作                                 
-  $("delete_button").click(function () {
-    c.clearRect(0, 0, $(canvas).width(), $(canvas).height());
-  });
 
-}, false);
+    //ここのコメントアウトを外しました
+    function data3() {
+        let colorInfo3 = document.getElementById("colorInfo3");
+
+        //グローバル変数から混色を作成
+        //Math.floor関数で整数部分のみ使う
+        //Numberで文字型から数値型へ変換
+        colorData3_R = Math.floor((Number(G_colorData1_R) + Number(G_colorData2_R)) - 255);
+        colorData3_G = Math.floor((Number(G_colorData1_G) + Number(G_colorData2_G)) - 255);
+        colorData3_B = Math.floor((Number(G_colorData1_B) + Number(G_colorData2_B)) - 255);
+
+
+        //配列ではなく，変数に変更
+        colorInfo3.style.backgroundColor = `rgba(${colorData3_R},${colorData3_G},${colorData3_B},1)`
+
+
+        console.log(colorData3_R);
+        console.log(colorData3_G);
+        console.log(colorData3_B);
+
+    }
+
+    function data4(){
+        let C = 204;
+        let m = 153;
+        let y = 102;
+        // c=204,m=153,y=102 ペンタ君の場合の正解値
+        var target = document.getElementById("sample")
+
+        if(C == Math.floor((Number(G_colorData1_R) + Number(G_colorData2_R)) - 255) && m == Math.floor((Number(G_colorData1_G) + Number(G_colorData2_G)) - 255) && y == Math.floor((Number(G_colorData1_B) + Number(G_colorData2_B)) - 255)){
+            target.href = "19page.html";
+        }
+        else{
+            target.href = "20page.html";
+        }
+    }
+
+
 </script>
+
 <body>
-  <div class="main">
-    <div class="toolbar">
-      <ul>
-        <li id="black"></li>
-        <li id="blue"></li>
-        <li id="red"></li>
-        <li id="green"></li>
-        <li id="small">S</li>
-        <li id="middle">M</li>
-        <li id="large">L</li>
-      </ul>
+    <div class="sample_box1">
+        <div class="back">
+        <img class="kusuri" src="15ページ\dai mei 15.png">
+        <img class="sikenkann" src="15ページ\sikennkann 15.png">
+        <div id="colorInfo1"></div>
+        <div id="colorInfo2"></div>
+        <div id="colorInfo3"></div>
+
+        <input class="tugi" type="image" src="12ページ\12ページ\tugihe 12.png"
+            onclick="data1()">
+        <input class="tugi2" type="image" src="12ページ\12ページ\tugihe 12.png"
+            onclick="data2()">
+        <input class="mazeru" type="image" src="14ページ\14ページ\mazeru 14.png"
+            onclick="data3()">
+        <a id="sample" href="http://www.yahoo.co.jp"><input class="furu"type="image" src="15ページ\huru 15.png" onclick="data4()"></a>
+        </div>
     </div>
-    <div class="canvas"><canvas id="myCanvas"></canvas></div>
-    <input id="delete_button" type="button" value="delete"/>
-  </div>
 </body>
+
 </html>
