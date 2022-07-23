@@ -1,96 +1,225 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>testpage</title>
 </head>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  #paper_cv {
+    top: 90px;
+    position: relative;
+    border: 2px solid #000;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
+  }
+
+  .back {
+    background-image: url(背景.png);
+    background-size: cover;
+    width: 378px;
+    height: 643px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+  .daimei {
+    width: 100px;
+    height: auto;
+    position: relative;
+    top: 70px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .keshi {
+    width: 20%;
+    height: auto;
+    position: relative;
+    top: 150px;
+    left: 33px;
+  }
+
+  .pen {
+    width: 20%;
+    height: auto;
+    position: relative;
+    top: 150px;
+    right: -195px;
+  }
+
+  .owaru {
+    width: 37%;
+    height: auto;
+    position: relative;
+    top: 150px;
+    left: -40px;
+  }
+</style>
+<script>
+  //各RGBを格納するグローバル変数を定義しました
+  let G_colorData1_R;
+  let G_colorData1_G;
+  let G_colorData1_B;
+
+  let G_colorData2_R;
+  let G_colorData2_G;
+  let G_colorData2_B;
+
+  //async function data1() {
+  async function data1() {
+    let port;
+    try {
+      port = await navigator.serial.requestPort();
+      await port.open({ baudRate: 115200 });
+      while (port.readable) {
+        const reader = port.readable.getReader();
+        try {
+          while (true) {
+            const { value, done } = await reader.read();
+            if (done) {
+              addSerial("Canceled\n");
+              break;
+            }
+            const inputValue = new TextDecoder().decode(value);
+            addSerial(inputValue);
+          }
+        } catch (error) {
+          addSerial("Error: Read" + error + "\n");
+        } finally {
+          reader.releaseLock();
+        }
+      }
+    }
+    catch (error) {
+      addSerial("Error: Open" + error + "\n");
+    }
+
+
+    function addSerial(msg) {
+      var textarea = document.getElementById('outputArea');
+      let colorInfo1 = document.getElementById("colorInfo1");
+      let data = msg.split(",");
+
+      if (data.length === 3) {
+        let colorData1 = { R: data[0], G: data[1], B: data[2] };
+        ctx.strokeStyle = `rgb(${G_colorData1_R},${G_colorData1_G},${G_colorData1_B})`;
+      }
+    }
+  }
+
+  var cv, ctx;
+  window.onload = function () {
+    // <canvas>を得る
+    var cv = document.getElementById("paper_cv");
+    // 描画用コンテキストを得る
+    ctx = paper_cv.getContext("2d");
+    // スマホかPCか判定
+    if (can_use_touch()) {
+      set_touch_event(cv);
+    } else {
+      set_mouse_event(cv);
+    }
+  };
+  // タッチイベントがあるかどうかを調べる
+  function can_use_touch() {
+    var iframe = document.createElement('iframe');
+    document.body.appendChild(iframe);
+    var can_use = ('ontouchstart' in iframe.contentWindow);
+    iframe.remove();
+    return can_use;
+  }
+  // タッチ位置の正確な座標を求める
+  function getClientPos(target, e) {
+    var rect = target.getBoundingClientRect();
+    var x = e.clientX - rect.left;
+    var y = e.clientY - rect.top;
+    return [x, y];
+  }
+  // タッチイベントを設定
+  function set_touch_event(cv) {
+    cv.ontouchstart = function (e) {
+      var et = e.touches[0];
+      pen_on_down(getClientPos(e.target, et));
+      e.preventDefault();
+    };
+    cv.ontouchmove = function (e) {
+      var et = e.touches[0];
+      pen_on_move(getClientPos(e.target, et));
+      e.preventDefault();
+    };
+    cv.ontouchend = function (e) {
+      var et = e.touches[0];
+      pen_on_up(getClientPos(e.target, et));
+      e.preventDefault();
+    };
+  }
+  // マウスイベントを設定
+  function set_mouse_event(cv) {
+    var is_down = false;
+    cv.onmousedown = function (e) {
+      is_down = true;
+      pen_on_down(getClientPos(e.target, e));
+      e.preventDefault();
+    };
+    cv.onmousemove = function (e) {
+      if (!is_down) return;
+      pen_on_move(getClientPos(e.target, e));
+      e.preventDefault();
+    };
+    cv.onmouseup = function (e) {
+      is_down = false;
+      pen_on_up(getClientPos(e.target, e));
+      e.preventDefault();
+    };
+  }
+  // 線の開始点を指定
+  function pen_on_down(p) {
+    ctx.beginPath();
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = `rgb(${G_colorData1_R},${G_colorData1_G},${G_colorData1_B})`;
+    ctx.moveTo(p[0], p[1]);
+  }
+  // 線を描画する
+  function pen_on_move(p) {
+    // context.strokeStyle = `rgb(${G_colorData1_R},${G_colorData1_G},${G_colorData1_B})`;
+    ctx.lineTo(p[0], p[1]);
+    ctx.stroke();
+  }
+  
+  // function pen_on_up(p) {
+  // }
+</script>
 
 <body>
-  <canvas id="paper_cv" width="400" height="400"></canvas>
-  <script>
-    var cv, ctx;
-    window.onload = function () {
-      // <canvas>を得る
-      var cv = document.getElementById("paper_cv");
-      // 描画用コンテキストを得る
-      ctx = paper_cv.getContext("2d");
-      // スマホかPCか判定
-      if (can_use_touch()) {
-        set_touch_event(cv);
-      } else {
-        set_mouse_event(cv);
-      }
-    };
-    // タッチイベントがあるかどうかを調べる
-    function can_use_touch() {
-      var iframe = document.createElement('iframe');
-      document.body.appendChild(iframe);
-      var can_use = ('ontouchstart' in iframe.contentWindow);
-      iframe.remove();
-      return can_use;
-    }
-    // タッチ位置の正確な座標を求める
-    function getClientPos(target, e) {
-      var rect = target.getBoundingClientRect();
-      var x = e.clientX - rect.left;
-      var y = e.clientY - rect.top;
-      return [x, y];
-    }
-    // タッチイベントを設定
-    function set_touch_event(cv) {
-      cv.ontouchstart = function (e) {
-        var et = e.touches[0];
-        pen_on_down(getClientPos(e.target, et));
-        e.preventDefault();
-      };
-      cv.ontouchmove = function (e) {
-        var et = e.touches[0];
-        pen_on_move(getClientPos(e.target, et));
-        e.preventDefault();
-      };
-      cv.ontouchend = function (e) {
-        var et = e.touches[0];
-        pen_on_up(getClientPos(e.target, et));
-        e.preventDefault();
-      };
-    }
-    // マウスイベントを設定
-    function set_mouse_event(cv) {
-      var is_down = false;
-      cv.onmousedown = function (e) {
-        is_down = true;
-        pen_on_down(getClientPos(e.target, e));
-        e.preventDefault();
-      };
-      cv.onmousemove = function (e) {
-        if (!is_down) return;
-        pen_on_move(getClientPos(e.target, e));
-        e.preventDefault();
-      };
-      cv.onmouseup = function (e) {
-        is_down = false;
-        pen_on_up(getClientPos(e.target, e));
-        e.preventDefault();
-      };
-    }
-    // 線の開始点を指定
-    function pen_on_down(p) {
-      ctx.beginPath();
-      ctx.lineWidth = 8;
-      ctx.moveTo(p[0], p[1]);
-    }
-    // 線を描画する
-    function pen_on_move(p) {
-      ctx.lineTo(p[0], p[1]);
-      ctx.stroke();
-    }
-    function pen_on_up(p) {
-    }
-  </script>
+  <div class="sample_box1">
+    <div class="back">
+      <img class="daimei" src="45ページ\dai mei 45.png">
+      <div class="box"></div>
+      <canvas id="paper_cv" height="250px" width="250px"></canvas>
 
+      <div id="colorInfo1">
+        <script src="./oekaki.js"></script>
+      </div>
+      <img class="keshi" src="45ページ\kesi 45.png">
+      <img class="pen" src="45ページ\pen 45.png" onclick="data1()">
+      <a href="1page.html">
+        <img class="owaru" src="45ページ\owaru big.png">
+      </a>
+    </div>
+  </div>
 </body>
 
 </html>
