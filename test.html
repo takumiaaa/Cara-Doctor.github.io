@@ -8,24 +8,19 @@
     <title>15page</title>
 </head>
 <style>
-body{
+    body {
         margin: 0;
         padding: 0;
-}
-    .sample_box1 {
-        width: 320PX;
-        height: 570px;
-        border: solid 2px #000000;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        /*線*/
     }
-    .back{
+
+    .back {
         background-image: url(背景.png);
         background-size: cover;
         width: 320px;
         height: 570px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .kusuri {
@@ -38,77 +33,79 @@ body{
         margin-right: auto;
     }
 
+    .yurasu {
+        -webkit-animation: buruburu 0.8s infinite linear alternate;
+        animation: buruburu 0.8s infinite linear alternate;
+    }
+
+    @-webkit-keyframes buruburu {
+        0% {
+            -webkit-transform: translate(0, 0) rotate(-3deg);
+        }
+
+        50% {
+            -webkit-transform: translate(0, -1px) rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: translate(0, 0)rotate(3deg);
+        }
+    }
+
+    @keyframes buruburu {
+        0% {
+            transform: translate(0, 0) rotate(-3deg);
+        }
+
+        50% {
+            transform: translate(0, -1px) rotate(0deg);
+        }
+
+        100% {
+            transform: translate(0, 0)rotate(3deg);
+        }
+    }
+
     .sikenkann {
-        width: 60px;
+        width: 260px;
         height: auto;
         position: relative;
-        top: 80px;
+        top: 130px;
         display: block;
         margin-left: auto;
         margin-right: auto;
-    }
-
-    .furu {
-        width: 150px;
-        height: auto;
-        position: relative;
-        top: 110px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    img.furu:active {
-        position: relative;
-        top: 113px;
     }
 
     .tugi {
-        width: 100px;
+        width: 120px;
         height: auto;
         position: relative;
-        top: -250px;
-        left: 50px;
+        top: 50px;
+        left: 0px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     img.tugi:active {
         position: relative;
-        top: -247px;
+        top: -53px;
     }
 
     .tugi2 {
-        width: 100px;
+        width: 120px;
         height: auto;
         position: relative;
-        top: -250px;
-        left: 70px;
+        top: 70px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     img.tugi2:active {
         position: relative;
-        top: -247px;
+        top: -73px;
     }
-
-    .mazeru {
-        width: 100px;
-        height: auto;
-        position: relative;
-        top: -170px;
-        left: -160px;
-    }
-
-    img.mazeru:active {
-        position: relative;
-        top: -167px;
-    }
-    .furu {
-        width: 100px;
-        height: auto;
-        position: relative;
-        top: -230px;
-        left: 65px;
-    }
-    
 
     #v {
         border: 1px solid #fff;
@@ -122,57 +119,159 @@ body{
         width: 300px;
     }
 
-    #colorInfo2 {
-        position: relative;
-        /* background-color: yellowgreen; */
-        border: 1px solid transparent;
-        height: 84px;
-        width: 52px;
-        top: -184px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
     #colorInfo1 {
         position: relative;
         /* background-color: aqua; */
         border: 1px solid transparent;
-        border-bottom-right-radius: 10px 20px;
-        border-bottom-left-radius: 10px 20px;
-        height: 86px;
-        width: 52px;
-        top: -10px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
+        border-bottom-right-radius: 30px 20px;
+        border-bottom-left-radius: 30px 20px;
+        height: 76px;
+        width: 33px;
+        top: 50px;
+        left: 34px;
 
     }
 
-    #colorInfo3 {
+    #gazo1 {
+        width: 30px;
+        height: auto;
+        top: -98px;
+        left: 97px;
         position: relative;
-        border: 1px solid transparent;
-        border-bottom-right-radius: 10px 20px;
-        border-bottom-left-radius: 10px 20px;
-        height: 172px;
-        width: 52px;
-        top: -270px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
+
+    }
+
+    #gazo2 {
+        width: 30px;
+        height: auto;
+        top: -98px;
+        left: 105px;
+        position: relative;
+
+    }
+
+    #gazo3 {
+        width: 30px;
+        height: auto;
+        top: -98px;
+        left: 112px;
+        position: relative;
+
+    }
+
+    #gazo4 {
+        width: 30px;
+        height: auto;
+        top: -98px;
+        left: 119px;
+        position: relative;
+
+    }
+
+    #gazo5 {
+        width: 30px;
+        height: auto;
+        top: -98px;
+        left: 126px;
+        position: relative;
+
+    }
+
+    #gazo6 {
+        width: 30px;
+        height: auto;
+        top: -50px;
+        left: -80px;
+        position: relative;
+
+    }
+
+    #gazo7 {
+        width: 30px;
+        height: auto;
+        top: -50px;
+        left: -72px;
+        position: relative;
+
+    }
+
+    #gazo8 {
+        width: 30px;
+        height: auto;
+        top: -50px;
+        left: -65px;
+        position: relative;
+
+    }
+
+    #gazo9 {
+        width: 30px;
+        height: auto;
+        top: -50px;
+        left: -58px;
+        position: relative;
+
+    }
+
+    #gazo10 {
+        width: 30px;
+        height: auto;
+        top: -87px;
+        left: 266px;
+        position: relative;
+
+    }
+
+    #gazo11 {
+        width: 30px;
+        height: auto;
+        top: -35px;
+        left: 63px;
+        position: relative;
+
+    }
+
+    #gazo12 {
+        width: 30px;
+        height: auto;
+        top: -35px;
+        left: 70px;
+        position: relative;
+
+    }
+
+    #gazo13 {
+        width: 30px;
+        height: auto;
+        top: -35px;
+        left: 76px;
+        position: relative;
+
+    }
+
+    #gazo14 {
+        width: 30px;
+        height: auto;
+        top: -35px;
+        left: 82px;
+        position: relative;
+
+    }
+
+    #gazo15 {
+        width: 30px;
+        height: auto;
+        top: -35px;
+        left: 88px;
+        position: relative;
+
     }
 </style>
 <script>
-    //各RGBを格納するグローバル変数を定義しました
-    let G_colorData1_R;
-    let G_colorData1_G;
-    let G_colorData1_B;
+    let G_colorData1_R = 0;
+    let G_colorData1_G = 0;
+    let G_colorData1_B = 0;
 
-    let G_colorData2_R;
-    let G_colorData2_G;
-    let G_colorData2_B;
-
-    //async function data1() {
     async function data1() {
         let port;
         try {
@@ -201,287 +300,198 @@ body{
             addSerial("Error: Open" + error + "\n");
         }
 
-
         function addSerial(msg) {
             var textarea = document.getElementById('outputArea');
             let colorInfo1 = document.getElementById("colorInfo1");
             let data = msg.split(",");
-            console.log(msg);
 
             if (data.length === 3) {
-                let colorData1 = { R: data[0], G: data[1], B: data[2] };
-                if(colorData1.R < 30){
-                    colorData1.R = 15;
+                colorData1 = { R: data[0], G: data[1], B: data[2] };
+
+                G_colorData1_R = Math.floor(100 - ((colorData1.R / 255) * 100));
+                G_colorData1_G = Math.floor(100 - ((colorData1.G / 255) * 100));
+                G_colorData1_B = Math.floor(100 - ((colorData1.B / 255) * 100));
+
+                if (G_colorData1_R < 16) {
+                    G_colorData1_R = 0;
                 }
-                else if(colorData1.R < 60){
-                    colorData1.R = 45;
+                else if (G_colorData1_R <= 33) {
+                    G_colorData1_R = 20;
                 }
-                else if(colorData1.R < 90){
-                    colorData1.R = 75;
+                else if (G_colorData1_R <= 50) {
+                    G_colorData1_R = 40;
                 }
-                else if(colorData1.R < 120){
-                    colorData1.R = 105;
+                else if (G_colorData1_R <= 67) {
+                    G_colorData1_R = 60;
                 }
-                else if(colorData1.R < 150){
-                    colorData1.R = 135;
+                else if (G_colorData1_R <= 83) {
+                    G_colorData1_R = 80;
                 }
-                else if(colorData1.R < 160){
-                    colorData1.R = 155;
-                }
-                else if(colorData1.R < 240){
-                    colorData1.R = 204;
-                }
-                else{
-                    colorData1.R = 248;
+                else {
+                    G_colorData1_R = 100;
                 }
 
-
-                if(colorData1.G < 30){
-                    colorData1.G = 15;
+                if (G_colorData1_G < 16) {
+                    G_colorData1_G = 0;
                 }
-                else if(colorData1.G < 60){
-                    colorData1.G = 45;
+                else if (G_colorData1_G <= 33) {
+                    G_colorData1_G = 20;
                 }
-                else if(colorData1.G < 90){
-                    colorData1.G = 75;
+                else if (G_colorData1_G <= 50) {
+                    G_colorData1_G = 40;
                 }
-                else if(colorData1.G < 120){
-                    colorData1.G = 105;
+                else if (G_colorData1_G <= 67) {
+                    G_colorData1_G = 60;
                 }
-                else if(colorData1.G < 150){
-                    colorData1.G = 135;
+                else if (G_colorData1_G <= 83) {
+                    G_colorData1_G = 80;
                 }
-                else if(colorData1.G < 180){
-                    colorData1.G = 165;
-                }
-                else if(colorData1.G < 200){
-                    colorData1.G = 190;
-                }
-                else{
-                    colorData1.G = 255;
+                else {
+                    G_colorData1_G = 100;
                 }
 
+                if (G_colorData1_B < 16) {
+                    G_colorData1_B = 0;
+                }
+                else if (G_colorData1_B <= 33) {
+                    G_colorData1_B = 20;
+                }
+                else if (G_colorData1_B <= 50) {
+                    G_colorData1_B = 40;
+                }
+                else if (G_colorData1_B <= 67) {
+                    G_colorData1_B = 60;
+                }
+                else if (G_colorData1_B <= 83) {
+                    G_colorData1_B = 80;
+                }
+                else {
+                    G_colorData1_B = 100;
+                }
+                console.log("C: " + G_colorData1_R + "%");
+                console.log("M: " + G_colorData1_G + "%");
+                console.log("Y: " + G_colorData1_B + "%");
 
-                if(colorData1.B < 30){
-                    colorData1.B = 15;
-                }
-                else if(colorData1.B < 60){
-                    colorData1.B = 45;
-                }
-                else if(colorData1.B < 90){
-                    colorData1.B = 75;
-                }
-                else if(colorData1.B < 110){
-                    colorData1.B = 110;
-                }
-                else if(colorData1.B < 190){
-                    colorData1.B = 153;
-                }
-                else if(colorData1.B < 220){
-                    colorData1.B = 215;
-                }
-                else{
-                    colorData1.B = 240;
-                }
-                // console.log("R:" +colorData1.R);
-                // console.log("G:" +colorData1.G);
-                // console.log("B:" +colorData1.B);
-
-                
                 colorInfo1.style.backgroundColor = `rgba(${colorData1.R},${colorData1.G},${colorData1.B},1)`;
-                G_colorData1_R = colorData1.R;
-                G_colorData1_G = colorData1.G;
-                G_colorData1_B = colorData1.B;
             }
         }
     }
 
-    //onclickからの値を引数で読み込むために少し変えています．シリアルから読み込む時は変更不要　井上
-    async function data2() {
-        let port;
-        try {
-            port = await navigator.serial.requestPort();
-            await port.open({ baudRate: 115200 });
-            while (port.readable) {
-                const reader = port.readable.getReader();
-                try {
-                    while (true) {
-                        const { value, done } = await reader.read();
-                        if (done) {
-                            addSerial("Canceled\n");
-                            break;
-                        }
-                        const inputValue = new TextDecoder().decode(value);
-                        addSerial(inputValue);
-                    }
-                } catch (error) {
-                    addSerial("Error: Read" + error + "\n");
-                } finally {
-                    reader.releaseLock();
-                }
-            }
-        } catch (error) {
-            addSerial("Error: Open" + error + "\n");
+    function data2() {
+        if (G_colorData1_R == 0) {
+        }
+        else if (G_colorData1_R == 20) {
+            document.getElementById("gazo1").src = "9ページ/c ma-ku 9.png";
+        }
+        else if (G_colorData1_R == 40) {
+            document.getElementById("gazo1").src = "9ページ/c ma-ku 9.png";
+            document.getElementById("gazo2").src = "9ページ/c ma-ku 9.png";
+        }
+        else if (G_colorData1_R == 60) {
+            document.getElementById("gazo1").src = "9ページ/c ma-ku 9.png";
+            document.getElementById("gazo2").src = "9ページ/c ma-ku 9.png";
+            document.getElementById("gazo3").src = "9ページ/c ma-ku 9.png";
+        }
+        else if (G_colorData1_R == 80) {
+            document.getElementById("gazo1").src = "9ページ/c ma-ku 9.png";
+            document.getElementById("gazo2").src = "9ページ/c ma-ku 9.png";
+            document.getElementById("gazo3").src = "9ページ/c ma-ku 9.png";
+            document.getElementById("gazo4").src = "9ページ/c ma-ku 9.png";
+        }
+        else {
+            document.getElementById("gazo1").src = "9ページ/c ma-ku 9.png";
+            document.getElementById("gazo2").src = "9ページ/c ma-ku 9.png";
+            document.getElementById("gazo3").src = "9ページ/c ma-ku 9.png";
+            document.getElementById("gazo4").src = "9ページ/c ma-ku 9.png";
+            document.getElementById("gazo5").src = "9ページ/c ma-ku 9.png";
         }
 
 
-
-
-
-        function addSerial(msg) {
-            var textarea = document.getElementById('outputArea');
-            let colorInfo2 = document.getElementById("colorInfo2");
-            let data = msg.split(",");
-
-
-            if (data.length === 3) {
-                let colorData2 = { R: data[0], G: data[1], B: data[2] };
-                if(colorData2.R < 30){
-                    colorData2.R = 15;
-                }
-                else if(colorData2.R < 60){
-                    colorData2.R = 45;
-                }
-                else if(colorData2.R < 90){
-                    colorData2.R = 75;
-                }
-                else if(colorData2.R < 120){
-                    colorData2.R = 105;
-                }
-                else if(colorData2.R < 150){
-                    colorData2.R = 135;
-                }
-                else if(colorData2.R < 180){
-                    colorData2.R = 165;
-                }
-                else if(colorData2.R < 200){
-                    colorData2.R = 190;
-                }
-                else{
-                    colorData2.R = 255;
-                }
-
-
-                if(colorData2.G < 30){
-                    colorData2.G = 15;
-                }
-                else if(colorData2.G < 60){
-                    colorData2.G = 45;
-                }
-                else if(colorData2.G < 90){
-                    colorData2.G = 75;
-                }
-                else if(colorData2.G < 110){
-                    colorData2.G = 100;
-                }
-                else if(colorData2.G < 190){
-                    colorData2.G = 153;
-                }
-                else if(colorData2.G < 220){
-                    colorData2.G = 210;
-                }
-                else if(colorData2.G < 240){
-                    colorData2.G = 225;
-                }
-                else{
-                    colorData2.G = 248;
-                }
-
-
-                if(colorData2.B < 30){
-                    colorData2.B = 15;
-                }
-                else if(colorData2.B < 60){
-                    colorData2.B = 45;
-                }
-                else if(colorData2.B < 90){
-                    colorData2.B = 75;
-                }
-                else if(colorData2.B < 120){
-                    colorData2.B = 105;
-                }
-                else if(colorData2.B < 150){
-                    colorData2.B = 135;
-                }
-                else if(colorData2.B < 160){
-                    colorData2.B = 155;
-                }
-                else if(colorData2.B < 240){
-                    colorData2.B = 204;
-                }
-                else{
-                    colorData2.B = 248;
-                }
-                colorInfo2.style.backgroundColor = `rgba(${colorData2.R},${colorData2.G},${colorData2.B},1)`
-                console.log(colorData2.B);
-
-                //2回目のデータをグローバル変数に格納
-                G_colorData2_R = colorData2.R;
-                G_colorData2_G = colorData2.G;
-                G_colorData2_B = colorData2.B;
-            }
-
+        if (G_colorData1_G == 0) {
         }
-    }
-
-
-    //ここのコメントアウトを外しました
-    function data3() {
-        let colorInfo3 = document.getElementById("colorInfo3");
-
-        //グローバル変数から混色を作成
-        //Math.floor関数で整数部分のみ使う
-        //Numberで文字型から数値型へ変換
-        colorData3_R = Math.floor((Number(G_colorData1_R) + Number(G_colorData2_R)) - 255);
-        colorData3_G = Math.floor((Number(G_colorData1_G) + Number(G_colorData2_G)) - 255);
-        colorData3_B = Math.floor((Number(G_colorData1_B) + Number(G_colorData2_B)) - 255);
-
-
-        //配列ではなく，変数に変更
-        colorInfo3.style.backgroundColor = `rgba(${colorData3_R},${colorData3_G},${colorData3_B},1)`
-
-
-        console.log(colorData3_R);
-        console.log(colorData3_G);
-        console.log(colorData3_B);
-
-    }
-
-    function data4(){
-        let C = 204;
-        let m = 153;
-        let y = 102;
-        // c=204,m=153,y=102 ペンタ君の場合の正解値
-        var target = document.getElementById("sample")
-
-        if(C == Math.floor((Number(G_colorData1_R) + Number(G_colorData2_R)) - 255) && m == Math.floor((Number(G_colorData1_G) + Number(G_colorData2_G)) - 255) && y == Math.floor((Number(G_colorData1_B) + Number(G_colorData2_B)) - 255)){
-            target.href = "17page.html";
+        else if (G_colorData1_G == 20) {
+            document.getElementById("gazo6").src = "9ページ/m ma-ku 9.png";
         }
-        else{
-            target.href = "17page-batu.html";
+        else if (G_colorData1_G == 40) {
+            document.getElementById("gazo6").src = "9ページ/m ma-ku 9.png";
+            document.getElementById("gazo7").src = "9ページ/m ma-ku 9.png";
         }
+        else if (G_colorData1_G == 60) {
+            document.getElementById("gazo6").src = "9ページ/m ma-ku 9.png";
+            document.getElementById("gazo7").src = "9ページ/m ma-ku 9.png";
+            document.getElementById("gazo8").src = "9ページ/m ma-ku 9.png";
+        }
+        else if (G_colorData1_G == 80) {
+            document.getElementById("gazo6").src = "9ページ/m ma-ku 9.png";
+            document.getElementById("gazo7").src = "9ページ/m ma-ku 9.png";
+            document.getElementById("gazo8").src = "9ページ/m ma-ku 9.png";
+            document.getElementById("gazo9").src = "9ページ/m ma-ku 9.png";
+        }
+        else {
+            document.getElementById("gazo6").src = "9ページ/m ma-ku 9.png";
+            document.getElementById("gazo7").src = "9ページ/m ma-ku 9.png";
+            document.getElementById("gazo8").src = "9ページ/m ma-ku 9.png";
+            document.getElementById("gazo9").src = "9ページ/m ma-ku 9.png";
+            document.getElementById("gazo10").src = "9ページ/m ma-ku 9.png";
+        }
+
+
+        if (G_colorData1_B == 0) {
+        }
+        else if (G_colorData1_B == 20) {
+            document.getElementById("gazo11").src = "9ページ/y ma-ku 9.png";
+        }
+        else if (G_colorData1_B == 40) {
+            document.getElementById("gazo11").src = "9ページ/y ma-ku 9.png";
+            document.getElementById("gazo12").src = "9ページ/y ma-ku 9.png";
+        }
+        else if (G_colorData1_B == 60) {
+            document.getElementById("gazo11").src = "9ページ/y ma-ku 9.png";
+            document.getElementById("gazo12").src = "9ページ/y ma-ku 9.png";
+            document.getElementById("gazo13").src = "9ページ/y ma-ku 9.png";
+        }
+        else if (G_colorData1_B == 80) {
+            document.getElementById("gazo11").src = "9ページ/y ma-ku 9.png";
+            document.getElementById("gazo12").src = "9ページ/y ma-ku 9.png";
+            document.getElementById("gazo13").src = "9ページ/y ma-ku 9.png";
+            document.getElementById("gazo14").src = "9ページ/y ma-ku 9.png";
+        }
+        else {
+            document.getElementById("gazo11").src = "9ページ/y ma-ku 9.png";
+            document.getElementById("gazo12").src = "9ページ/y ma-ku 9.png";
+            document.getElementById("gazo13").src = "9ページ/y ma-ku 9.png";
+            document.getElementById("gazo14").src = "9ページ/y ma-ku 9.png";
+            document.getElementById("gazo15").src = "9ページ/y ma-ku 9.png";
+        }
+
     }
 
 
 </script>
 
 <body>
-    <div class="sample_box1">
-        <div class="back">
-        <img class="kusuri" src="15ページ\dai mei 15.png">
-        <img class="sikenkann" src="15ページ\sikennkann 15.png">
+    <div class="back">
+        <img class="kusuri" src="11ページ\dai mei 11.png">
+        <img class="sikenkann" src="9ページ\sikenkan9.png">
         <div id="colorInfo1"></div>
-        <div id="colorInfo2"></div>
-        <div id="colorInfo3"></div>
+        <img id="gazo1" name="gazo1">
+        <img id="gazo2" name="gazo2">
+        <img id="gazo3" name="gazo3">
+        <img id="gazo4" name="gazo4">
+        <img id="gazo5" name="gazo5">
+        <img id="gazo6" name="gazo6">
+        <img id="gazo7" name="gazo7">
+        <img id="gazo8" name="gazo8">
+        <img id="gazo9" name="gazo9">
+        <img id="gazo10" name="gazo10">
+        <img id="gazo11" name="gazo11">
+        <img id="gazo12" name="gazo12">
+        <img id="gazo13" name="gazo13">
+        <img id="gazo14" name="gazo14">
+        <img id="gazo15" name="gazo15">
+        <input class="tugi" type="image" src="15ページ\1.png" onclick="data1()">
+        <input class="tugi2" type="image" src="15ページ\2.png" onclick="data2()" onload="data2();">
 
-        <input class="tugi" type="image" src="15ページ\1.png"
-            onclick="data1()">
-        <input class="tugi2" type="image" src="15ページ\2.png"
-            onclick="data2()">
-        <input class="mazeru" type="image" src="14ページ\14ページ\mazeru 14.png"
-            onclick="data3()">
-        <a id="sample" href="http://www.yahoo.co.jp"><input class="furu"type="image" src="12ページ\12ページ\tugihe 12.png" onclick="data4()"></a>
-        </div>
     </div>
 </body>
 
