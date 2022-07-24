@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>15page</title>
+</head>
+<style>
+    .sample_box1 {
+        width: 320PX;
+        height: 570px;
+        border: solid 2px #000000;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        /*線*/
+    }
+
+    .back {
+        background-image: url(背景.png);
+        background-size: cover;
+        width: 320px;
+        height: 570px;
+    }
+
+    .kusuri {
+        width: 160px;
+        height: auto;
+        position: relative;
+        top: 50px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .sikenkann {
+        width: 80px;
+        height: auto;
+        position: relative;
+        top: 80px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .furu {
+        width: 150px;
+        height: auto;
+        position: relative;
+        top: 110px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    img.furu:active {
+        position: relative;
+        top: 113px;
+    }
+
+    .tugi {
+        width: 100px;
+        height: auto;
+        position: relative;
+        top: 20px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        
+    }
+
+    img.tugi:active {
+        position: relative;
+        top: -247px;
+    }
+
+    .tugi2 {
+        width: 100px;
+        height: auto;
+        position: relative;
+        top: -250px;
+        left: 70px;
+    }
+
+    img.tugi2:active {
+        position: relative;
+        top: -247px;
+    }
+
+    .mazeru {
+        width: 100px;
+        height: auto;
+        position: relative;
+        top: -170px;
+        left: -160px;
+    }
+
+    img.mazeru:active {
+        position: relative;
+        top: -167px;
+    }
+
+    .furu {
+        width: 100px;
+        height: auto;
+        position: relative;
+        top: -230px;
+        left: 65px;
+    }
+
+
+    #v {
+        border: 1px solid #fff;
+        width: 300px;
+        height: 200px;
+        margin: 0%;
+        background-color: #fff;
+    }
+
+    input[type=range] {
+        width: 300px;
+    }
+
+    #colorInfo1 {
+        position: relative;
+        /* background-color: aqua; */
+        border: 1px solid transparent;
+        border-bottom-right-radius: 10px 20px;
+        border-bottom-left-radius: 10px 20px;
+        height: 116px;
+        width: 70px;
+        top: -42px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+</style>
+<script>
+    //各RGBを格納するグローバル変数を定義しました
+    let G_colorData1_R;
+    let G_colorData1_G;
+    let G_colorData1_B;
+
+    let G_colorData2_R;
+    let G_colorData2_G;
+    let G_colorData2_B;
+
+    //async function data1() {
+    async function data1() {
+        let port;
+        try {
+            port = await navigator.serial.requestPort();
+            await port.open({ baudRate: 115200 });
+            while (port.readable) {
+                const reader = port.readable.getReader();
+                try {
+                    while (true) {
+                        const { value, done } = await reader.read();
+                        if (done) {
+                            addSerial("Canceled\n");
+                            break;
+                        }
+                        const inputValue = new TextDecoder().decode(value);
+                        addSerial(inputValue);
+                    }
+                } catch (error) {
+                    addSerial("Error: Read" + error + "\n");
+                } finally {
+                    reader.releaseLock();
+                }
+            }
+        }
+        catch (error) {
+            addSerial("Error: Open" + error + "\n");
+        }
+
+
+
+        function addSerial(msg) {
+            
+            var textarea = document.getElementById('outputArea');
+            let colorInfo1 = document.getElementById("colorInfo1");
+            let data = msg.split(",");
+            // console.log(msg);
+
+            if (data.length === 3) {
+                let colorData1 = { R: data[0], G: data[1], B: data[2] };
+                colorInfo1.style.backgroundColor = `rgba(${colorData1.R},${colorData1.G},${colorData1.B},1)`;
+                G_colorData1_R = Math.floor(100 - (colorData1.R / 255) * 100);
+                G_colorData1_G = Math.floor(100 - (colorData1.G / 255) * 100);
+                G_colorData1_B = Math.floor(100 - (colorData1.B / 255) * 100);
+                console.log("C " + G_colorData1_R);
+                console.log("M " + G_colorData1_G);
+                console.log("Y " + G_colorData1_B);
+                
+
+                
+
+
+
+            }
+        }
+    }
+</script>
+
+<body>
+    <div class="sample_box1">
+        <div class="back">
+            <img class="kusuri" src="dai mei 39.png">
+            <img class="sikenkann" src="15ページ\sikennkann 15.png">
+
+            <div id="colorInfo1">
+            </div>
+                
+                <input class="tugi" type="image" src="追加722\1.png" onclick="data1()">
+        </div>
+    </div>
+    
+</body>
+
+</html>
